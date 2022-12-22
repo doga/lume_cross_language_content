@@ -37,8 +37,8 @@ Don't forget to define the `lume_cross_language_content/` import prefix in your 
 ```json
 {
   "imports": {
-    "lume/"           : "https://deno.land/x/lume@v1.14.2/",
-    "lume_cross_language_content/": "https://deno.land/x/lume_cross_language_content@v1.0.1/",
+    "lume/"                       : "https://deno.land/x/lume@v1.14.2/",
+    "lume_cross_language_content/": "https://deno.land/x/lume_cross_language_content@v1.0.2/",
   }
 }
 ```
