@@ -17,13 +17,19 @@ Call lume_cross_language_content from your [Lume project's configuration file](h
 import lume from 'lume/mod.ts';
 import lume_cross_language_content from 'lume_cross_language_content/mod.ts';
 
+const
+src  = './src',
+dest = './build';
+
 export default
 lume({
-  location: new URL('https://site.example'),
-  src     : './src',
-  dest    : './build',
+  src, dest,
+  location: new URL('https://qworum.net'),
 })
-.use(lume_cross_language_content());
+.addEventListener(
+  "afterBuild",
+  lume_cross_language_content.createAfterBuildListener(src, dest)
+);
 ```
 
 Don't forget to define the `lume_cross_language_content/` import prefix in your lume project's `import_map.json` file:
@@ -32,7 +38,7 @@ Don't forget to define the `lume_cross_language_content/` import prefix in your 
 {
   "imports": {
     "lume/"           : "https://deno.land/x/lume@v1.14.2/",
-    "lume_cross_language_content/": "https://deno.land/x/lume_cross_language_content@v1.0.0/",
+    "lume_cross_language_content/": "https://deno.land/x/lume_cross_language_content@v1.0.1/",
   }
 }
 ```
