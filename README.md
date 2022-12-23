@@ -3,7 +3,7 @@
 A [Lume](https://lume.land) post-processor add-on for developing multi-language websites.
 Lume is a static-site generator for the [Deno](https://deno.land) JavaScript/TypeScript runtime.
 
-Use lume_cross_language_content for sharing [data](https://lume.land/docs/creating-pages/shared-data/#the-_data-directories) between different language version of your website.
+Use lume_cross_language_content for sharing [data](https://lume.land/docs/creating-pages/shared-data/#the-_data-directories) between different language versions of your website.
 
 For example, a product page on an e-commerce can show the same price across languages while storing the price information in one single file in a Lume project.
 
@@ -38,7 +38,7 @@ Don't forget to define the `lume_cross_language_content/` import prefix in your 
 {
   "imports": {
     "lume/"                       : "https://deno.land/x/lume@v1.14.2/",
-    "lume_cross_language_content/": "https://deno.land/x/lume_cross_language_content@v1.0.4/",
+    "lume_cross_language_content/": "https://deno.land/x/lume_cross_language_content@v1.0.5/",
   }
 }
 ```
@@ -95,7 +95,6 @@ plans:
 - title   : Basic
   price   : >
     <span class='price' data-amount='§§{plans.basic.monthly_fee}' data-currency='§§{currency}'></span> per month or 
-
     <span class='price' data-amount='§§{plans.basic.yearly_fee}' data-currency='§§{currency}'></span> per year.
 ```
 
@@ -139,6 +138,7 @@ Finally, here is the `layouts/pricing.njk` Lume layout that adds the final touch
   </ul>
   <!-- … -->
   <script>
+    // localise the prices
     const lang = document.documentElement.lang;
 
     document.querySelectorAll("span.price")
