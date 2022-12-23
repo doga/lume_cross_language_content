@@ -5,7 +5,7 @@ import * as path from "https://deno.land/std@0.167.0/path/mod.ts";
 import YAML from 'https://cdn.skypack.dev/pin/yaml@v2.1.3-ntmfesRl3kdsLKTvvOl6/mode=imports,min/optimized/yaml.js';
 import { SiteEvent } from "lume/core.ts";
 
-const placeholderSyntax = /§§\{(\S+)\}/;
+const placeholderSyntax = /§§\{([^}]+)\}/;
 
 function isObject(o):boolean {return typeof o === 'object' && !(o instanceof Array);}
 function isLiteral(o):boolean {return typeof o === 'string' || typeof o === 'number';}
@@ -20,6 +20,7 @@ class Constants {
   }
 
   getValue(path:string): Literal{
+    path = path.trim();
     const constantPath = path.split('.'); 
     return this._getValue(this.values, constantPath);
   }
@@ -58,7 +59,7 @@ function createAfterBuildListener(srcDir: string, buildDir: string ) {
   // return the handler for Lume's "afterBuild" event
   return (event: SiteEvent) => {
     if(!event.pages)return;
-    console.info(`buildPathUrl: ${buildPathUrl}`);
+    // console.info(`buildPathUrl: ${buildPathUrl}`);
 
     // read the cross-language constants
     const
@@ -75,22 +76,22 @@ function createAfterBuildListener(srcDir: string, buildDir: string ) {
         const
         builtPageFileUrl = new URL(urlPathWithoutStartingSlash, buildPathUrl),
         builtPageFilePath = path.fromFileUrl(builtPageFileUrl);
-        console.info(`cross-language-constants: page: ${builtPageFileUrl}`);
-        console.info(`                                ${builtPageFilePath}`);
+        // console.info(`cross-language-constants: page: ${builtPageFileUrl}`);
+        // console.info(`                                ${builtPageFilePath}`);
 
         // update the built page
         try {
           // read the built page
           let
           inText = Deno.readTextFileSync(builtPageFilePath),
-          // if(inText.indexOf(prefix) !== -1) console.info(`found ${prefix} in ${builtPageFilePath}`);
+          // if(inText.indexOf(prefix) !== -1) // console.info(`found ${prefix} in ${builtPageFilePath}`);
           outText = '', match;
 
           // replace the placeholders with their values
           while ((match = placeholderSyntax.exec(inText)) !== null) {
-            console.log(
-              `Found ${match[1]} start=${match.index} end=${placeholderSyntax.lastIndex}.`,
-            );
+            // console.log(
+            //   `Found ${match[1]} start=${match.index} end=${placeholderSyntax.lastIndex}.`,
+            // );
             outText += inText.substring(0, match.index);
             outText += constants.getValue(match[1]);
             inText = inText.substring(match.index+match[0].length);
