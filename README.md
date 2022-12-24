@@ -14,6 +14,10 @@ But the downside of YAML is that you can't embed shared data into into these pag
 
 For example, with lume_cross_language_content a YAML product page can show the same price across languages while storing the price information in one single file in a Lume project.
 
+## Caveat
+
+If a smooth development experience matters more to you than succinct code, then sticking with Lume's built-in data sharing mechanism is a better option, because using lume_cross_language_content will involve restarting the local Lume server when the shared data is updated in order to display the new data.
+
 ## Usage
 
 Call lume_cross_language_content from your [Lume project's configuration file](https://lume.land/docs/configuration/config-file/):
@@ -45,7 +49,7 @@ Don't forget to define the `lume_cross_language_content/` import prefix in your 
 {
   "imports": {
     "lume/"                       : "https://deno.land/x/lume@v1.14.2/",
-    "lume_cross_language_content/": "https://deno.land/x/lume_cross_language_content@v1.0.6/",
+    "lume_cross_language_content/": "https://deno.land/x/lume_cross_language_content@v1.0.7/",
   }
 }
 ```
