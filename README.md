@@ -3,9 +3,16 @@
 A [Lume](https://lume.land) post-processor add-on for developing multi-language websites.
 Lume is a static-site generator for the [Deno](https://deno.land) JavaScript/TypeScript runtime.
 
-Use lume_cross_language_content for sharing [data](https://lume.land/docs/creating-pages/shared-data/#the-_data-directories) between different language versions of your website.
+Use lume_cross_language_content for sharing between different language versions of your website.
 
-For example, a product page on an e-commerce can show the same price across languages while storing the price information in one single file in a Lume project.
+Lume already has a mechanism for [sharing data between pages](https://lume.land/docs/creating-pages/shared-data),
+but this built-in mechanism is only available for some Lume page formats such as Nunjucks but not for other formats such as YAML or Markdown.
+
+YAML is a page format that is particularly suitable for multi-language sites, as the page can contain language-specific content while leaving it to the [layouts](https://lume.land/docs/creating-pages/layouts/) the task of generating the HTML markup that remains the same across languages.
+
+But the downside of YAML is that you can't embed shared data into into these pages. lume_cross_language_content fixes that by enabling the embedding of shared data in all types of pages, not only some.
+
+For example, with lume_cross_language_content a YAML product page can show the same price across languages while storing the price information in one single file in a Lume project.
 
 ## Usage
 
@@ -38,7 +45,7 @@ Don't forget to define the `lume_cross_language_content/` import prefix in your 
 {
   "imports": {
     "lume/"                       : "https://deno.land/x/lume@v1.14.2/",
-    "lume_cross_language_content/": "https://deno.land/x/lume_cross_language_content@v1.0.5/",
+    "lume_cross_language_content/": "https://deno.land/x/lume_cross_language_content@v1.0.6/",
   }
 }
 ```
