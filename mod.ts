@@ -1,21 +1,19 @@
 // Replaces cross-language constants in the build directory after the build.
 // This is a handler for Lume's "afterBuild" events (https://lume.land/docs/core/events/#afterbuild).
 
-import * as path from "https://deno.land/std@0.167.0/path/mod.ts";
-import YAML from 'https://cdn.skypack.dev/pin/yaml@v2.1.3-ntmfesRl3kdsLKTvvOl6/mode=imports,min/optimized/yaml.js';
-import { SiteEvent } from "lume/core.ts";
+import { path, YAML } from "./deps.ts";
 
 const placeholderSyntax = /§§\{([^}]+)\}/;
 
-function isObject(o):boolean {return typeof o === 'object' && !(o instanceof Array);}
-function isLiteral(o):boolean {return typeof o === 'string' || typeof o === 'number';}
+function isObject(o: unknown):boolean {return typeof o === 'object' && !(o instanceof Array);}
+function isLiteral(o: unknown):boolean {return typeof o === 'string' || typeof o === 'number';}
 
 type Literal = string | number;
 
 class Constants {
   values: Record<string, unknown>;
   constructor(filePath: string) {
-    this.values = YAML.parseDocument(Deno.readTextFileSync(filePath))?.toJS();
+    this.values = YAML.parse(Deno.readTextFileSync(filePath)) as Record<string, unknown>;
     if(!isObject(this.values))throw new Error("constants container is not an object");
   }
 
@@ -57,7 +55,7 @@ function createAfterBuildListener(srcDir: string, buildDir: string ) {
   buildPathUrl: URL = path.toFileUrl(buildPathAbs);
 
   // return the handler for Lume's "afterBuild" event
-  return (event: SiteEvent) => {
+  return (event: Lume.SiteEvent) => {
     if(!event.pages)return;
     // console.info(`buildPathUrl: ${buildPathUrl}`);
 

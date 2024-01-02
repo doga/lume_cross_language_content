@@ -48,13 +48,13 @@ Don't forget to define the `lume_cross_language_content/` import prefix in your 
 ```json
 {
   "imports": {
-    "lume/"                       : "https://deno.land/x/lume@v1.14.2/",
-    "lume_cross_language_content/": "https://deno.land/x/lume_cross_language_content@v1.0.7/",
+    "lume/"                       : "https://deno.land/x/lume@v2.0.2/",
+    "lume_cross_language_content/": "https://deno.land/x/lume_cross_language_content@v2.0.0/",
   }
 }
 ```
 
-`lume_cross_language_content@v1.x.x` versions are compatible with `lume@v1.x.x` versions from `lume@v1.13.x` upwards.
+`lume_cross_language_content@v1.x.x` versions are compatible with `lume@v2.x.x`.
 
 ## How it works
 
