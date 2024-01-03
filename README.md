@@ -1,5 +1,7 @@
 # lume_cross_language_content
 
+__ARCHIVED PROJECT__: This project is no longer maintained, as with Lume's new Vento templating system this project is no longer needed.
+
 A [Lume](https://lume.land) post-processor add-on for developing multi-language websites.
 Lume is a static-site generator for the [Deno](https://deno.land) JavaScript/TypeScript runtime.
 
@@ -49,7 +51,7 @@ Don't forget to define the `lume_cross_language_content/` import prefix in your 
 {
   "imports": {
     "lume/"                       : "https://deno.land/x/lume@v2.0.2/",
-    "lume_cross_language_content/": "https://deno.land/x/lume_cross_language_content@v2.0.0/",
+    "lume_cross_language_content/": "https://deno.land/x/lume_cross_language_content@v2.0.1/",
   }
 }
 ```
